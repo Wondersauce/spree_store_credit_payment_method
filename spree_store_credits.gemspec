@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.add_dependency 'spree', '2.4.0.rc4'
+  s.add_dependency 'spree-core', '~> 2.4'
 
   s.add_development_dependency 'capybara'
   s.add_development_dependency 'coffee-rails'
