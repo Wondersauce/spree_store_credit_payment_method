@@ -167,7 +167,7 @@ class Spree::StoreCredit < ActiveRecord::Base
 
   class << self
     def default_created_by
-      Spree.user_class.find_by(email: DEFAULT_CREATED_BY_EMAIL)
+      Spree.user_class.find_by(email: try_spree_current_user.email)      
     end
   end
 
