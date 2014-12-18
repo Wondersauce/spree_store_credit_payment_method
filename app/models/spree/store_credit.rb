@@ -16,7 +16,7 @@ class Spree::StoreCredit < ActiveRecord::Base
   belongs_to :credit_type, class_name: 'Spree::StoreCreditType', :foreign_key => 'type_id'
   has_many :store_credit_events
 
-  validates_presence_of :user_id, :category_id, :type_id, :created_by_id, :currency
+  validates_presence_of :user_id, :category_id, :type_id, :currency
   validates_numericality_of :amount, { greater_than: 0 }
   validates_numericality_of :amount_used, { greater_than_or_equal_to: 0 }
   validate :amount_used_less_than_or_equal_to_amount
@@ -167,7 +167,7 @@ class Spree::StoreCredit < ActiveRecord::Base
 
   class << self
     def default_created_by
-      Spree.user_class.find_by(email: try_spree_current_user.email)      
+      Spree.user_class.find_by(email: DEFAULT_CREATED_BY_EMAIL)      
     end
   end
 
