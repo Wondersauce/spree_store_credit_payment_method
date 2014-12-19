@@ -26,6 +26,7 @@ module SpreeStoreCredits::PaymentDecorator
       # payment has a source of itself (Spree::Payment) no matter the
       # type of payment getting refunded, hence the additional check
       # if the source is a store credit.
+      return if payment_method.nil? # for Sprangular compatibility
       return unless store_credit? && source.is_a?(Spree::StoreCredit)
 
       # creates the store credit event
@@ -37,6 +38,7 @@ module SpreeStoreCredits::PaymentDecorator
     end
 
     def invalidate_old_payments
+      return if payment_method.nil? # for Sprangular compatibility
       return if store_credit? # store credits shouldn't invalidate other payment types
       order.payments.with_state('checkout').where("id != ?", self.id).each do |payment|
         payment.invalidate! unless payment.store_credit?
