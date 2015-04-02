@@ -1,5 +1,5 @@
 module Spree
-	PaymentMethod.class_eval do:
+	PaymentMethod.class_eval do
 
 	  def self.included(base)
 	    base.prepend(InstanceMethods)
